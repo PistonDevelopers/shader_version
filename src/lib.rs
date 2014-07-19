@@ -16,3 +16,20 @@ pub enum VersionRange<T> {
     VersionFrom(T)
 }
 
+#[allow(non_camel_case_types)]
+#[allow(missing_doc)]
+pub enum OpenGL {
+    OpenGL_2_0,
+    OpenGL_2_1,
+    OpenGL_3_0,
+    OpenGL_3_1,
+    OpenGL_3_2,
+    OpenGL_3_3,
+    OpenGL_4_0,
+    OpenGL_4_1,
+    OpenGL_4_2,
+    OpenGL_4_3,
+    OpenGL_4_4
+}
+
+
