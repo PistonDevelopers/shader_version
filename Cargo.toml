@@ -1,0 +1,13 @@
+[package]
+
+name = "shader_version"
+version = "0.0.0"
+readme = "README.md"
+authors = ["bvssvni <bvssvni@gmail.com>"]
+tags = []
+
+[[lib]]
+
+name = "shader_version"
+path = "src/lib.rs"
+
