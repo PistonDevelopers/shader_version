@@ -89,3 +89,22 @@ impl OpenGL {
     }
 }
 
+impl GLSL {
+    /// Gets OpenGL version associated with GLSL.
+    #[allow(non_snake_case_functions)]
+    pub fn to_OpenGL(&self) -> OpenGL {
+        match *self {
+            GLSL_1_10 => OpenGL_2_0,
+            GLSL_1_20 => OpenGL_2_1,
+            GLSL_1_30 => OpenGL_3_0,
+            GLSL_1_40 => OpenGL_3_1,
+            GLSL_1_50 => OpenGL_3_2,
+            GLSL_3_30 => OpenGL_3_3,
+            GLSL_4_00 => OpenGL_4_0,
+            GLSL_4_10 => OpenGL_4_1,
+            GLSL_4_20 => OpenGL_4_2,
+            GLSL_4_30 => OpenGL_4_3,
+            GLSL_4_40 => OpenGL_4_4,
+        }
+    }
+}
