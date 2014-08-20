@@ -5,8 +5,7 @@ version = "0.0.0"
 authors = ["bvssvni <bvssvni@gmail.com>"]
 tags = []
 
-[[lib]]
+[lib]
 
 name = "shader_version"
 path = "src/lib.rs"
-
