@@ -38,7 +38,7 @@ impl OpenGL {
     }
 
     /// Gets GLSL version associated with OpenGL.
-    #[allow(non_snake_case_functions)]
+    #[allow(non_snake_case)]
     pub fn to_GLSL(&self) -> glsl::GLSL {
         match *self {
             OpenGL_2_0 => glsl::GLSL_1_10,

@@ -24,7 +24,7 @@ pub enum GLSL {
 
 impl GLSL {
     /// Gets OpenGL version associated with GLSL.
-    #[allow(non_snake_case_functions)]
+    #[allow(non_snake_case)]
     pub fn to_OpenGL(&self) -> opengl::OpenGL {
         match *self {
             GLSL_1_10 => opengl::OpenGL_2_0,
