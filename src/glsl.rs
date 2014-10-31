@@ -6,7 +6,7 @@ use opengl;
 /// the GLSL version is the same as the OpenGL version.
 ///
 /// Source: http://www.opengl.org/wiki/Core_Language_%28GLSL%29
-#[allow(missing_doc)]
+#[allow(missing_docs)]
 #[allow(non_camel_case_types)]
 pub enum GLSL {
     GLSL_1_10,

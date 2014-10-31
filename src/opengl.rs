@@ -4,7 +4,7 @@
 use glsl;
 
 #[allow(non_camel_case_types)]
-#[allow(missing_doc)]
+#[allow(missing_docs)]
 pub enum OpenGL {
     OpenGL_2_0,
     OpenGL_2_1,
