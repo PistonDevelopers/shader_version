@@ -1,6 +1,6 @@
 //! Models versions of OpenGL Shader Language (GLSL)
 
-use opengl;
+use opengl::OpenGL;
 
 /// For OpenGL version 3.3 and above,
 /// the GLSL version is the same as the OpenGL version.
@@ -25,19 +25,19 @@ pub enum GLSL {
 impl GLSL {
     /// Gets OpenGL version associated with GLSL.
     #[allow(non_snake_case)]
-    pub fn to_OpenGL(&self) -> opengl::OpenGL {
+    pub fn to_OpenGL(&self) -> OpenGL {
         match *self {
-            GLSL_1_10 => opengl::OpenGL_2_0,
-            GLSL_1_20 => opengl::OpenGL_2_1,
-            GLSL_1_30 => opengl::OpenGL_3_0,
-            GLSL_1_40 => opengl::OpenGL_3_1,
-            GLSL_1_50 => opengl::OpenGL_3_2,
-            GLSL_3_30 => opengl::OpenGL_3_3,
-            GLSL_4_00 => opengl::OpenGL_4_0,
-            GLSL_4_10 => opengl::OpenGL_4_1,
-            GLSL_4_20 => opengl::OpenGL_4_2,
-            GLSL_4_30 => opengl::OpenGL_4_3,
-            GLSL_4_40 => opengl::OpenGL_4_4,
+            GLSL::GLSL_1_10 => OpenGL::OpenGL_2_0,
+            GLSL::GLSL_1_20 => OpenGL::OpenGL_2_1,
+            GLSL::GLSL_1_30 => OpenGL::OpenGL_3_0,
+            GLSL::GLSL_1_40 => OpenGL::OpenGL_3_1,
+            GLSL::GLSL_1_50 => OpenGL::OpenGL_3_2,
+            GLSL::GLSL_3_30 => OpenGL::OpenGL_3_3,
+            GLSL::GLSL_4_00 => OpenGL::OpenGL_4_0,
+            GLSL::GLSL_4_10 => OpenGL::OpenGL_4_1,
+            GLSL::GLSL_4_20 => OpenGL::OpenGL_4_2,
+            GLSL::GLSL_4_30 => OpenGL::OpenGL_4_3,
+            GLSL::GLSL_4_40 => OpenGL::OpenGL_4_4,
         }
     }
 }
