@@ -19,7 +19,8 @@ pub enum GLSL {
     GLSL_4_10,
     GLSL_4_20,
     GLSL_4_30,
-    GLSL_4_40
+    GLSL_4_40,
+    GLSL_4_50
 }
 
 impl GLSL {
@@ -38,6 +39,7 @@ impl GLSL {
             GLSL::GLSL_4_20 => OpenGL::OpenGL_4_2,
             GLSL::GLSL_4_30 => OpenGL::OpenGL_4_3,
             GLSL::GLSL_4_40 => OpenGL::OpenGL_4_4,
+            GLSL::GLSL_4_50 => OpenGL::OpenGL_4_5
         }
     }
 }
