@@ -16,7 +16,8 @@ pub enum OpenGL {
     OpenGL_4_1,
     OpenGL_4_2,
     OpenGL_4_3,
-    OpenGL_4_4
+    OpenGL_4_4,
+    OpenGL_4_5
 }
 
 impl OpenGL {
@@ -33,7 +34,8 @@ impl OpenGL {
             OpenGL::OpenGL_4_1 => (4, 1),
             OpenGL::OpenGL_4_2 => (4, 2),
             OpenGL::OpenGL_4_3 => (4, 3),
-            OpenGL::OpenGL_4_4 => (4, 4)
+            OpenGL::OpenGL_4_4 => (4, 4),
+            OpenGL::OpenGL_4_5 => (4, 5)
         }
     }
 
@@ -52,6 +54,7 @@ impl OpenGL {
             OpenGL::OpenGL_4_2 => GLSL::GLSL_4_20,
             OpenGL::OpenGL_4_3 => GLSL::GLSL_4_30,
             OpenGL::OpenGL_4_4 => GLSL::GLSL_4_40,
+            OpenGL::OpenGL_4_5 => GLSL::GLSL_4_50
         }
     }
 }
