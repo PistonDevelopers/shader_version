@@ -3,7 +3,12 @@
 name = "shader_version"
 version = "0.0.0"
 authors = ["bvssvni <bvssvni@gmail.com>"]
-tags = []
+tags = ["shader", "version", "OpenGL", "GLSL"]
+description = "A helper library for detecting and picking compatible shaders"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/pistondevelopers/shader_version.git"
+homepage = "https://github.com/pistondevelopers/shader_version"
 
 [lib]
 
