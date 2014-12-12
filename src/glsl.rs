@@ -8,6 +8,7 @@ use opengl::OpenGL;
 /// Source: http://www.opengl.org/wiki/Core_Language_%28GLSL%29
 #[allow(missing_docs)]
 #[allow(non_camel_case_types)]
+#[deriving(Copy)]
 pub enum GLSL {
     _1_10,
     _1_20,
