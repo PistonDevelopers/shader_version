@@ -3,7 +3,7 @@
 name = "shader_version"
 version = "0.0.0"
 authors = ["bvssvni <bvssvni@gmail.com>"]
-tags = ["shader", "version", "OpenGL", "GLSL"]
+keywords = ["shader", "version", "OpenGL", "GLSL"]
 description = "A helper library for detecting and picking compatible shaders"
 license = "MIT"
 readme = "README.md"
