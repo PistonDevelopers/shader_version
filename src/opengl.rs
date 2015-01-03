@@ -5,7 +5,7 @@ use glsl::GLSL;
 
 #[allow(non_camel_case_types)]
 #[allow(missing_docs)]
-#[deriving(Copy)]
+#[derive(Copy)]
 pub enum OpenGL {
     _2_0,
     _2_1,
