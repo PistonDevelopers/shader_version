@@ -23,7 +23,7 @@ pub enum OpenGL {
 
 impl OpenGL {
     /// Gets the minor version of OpenGL.
-    pub fn get_major_minor(&self) -> (int, int) {
+    pub fn get_major_minor(&self) -> (isize, isize) {
         match *self {
             OpenGL::_2_0 => (2, 0),
             OpenGL::_2_1 => (2, 1),
