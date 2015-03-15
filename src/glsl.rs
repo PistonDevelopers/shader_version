@@ -51,6 +51,8 @@ impl PickShader for GLSL {
         where
             I: Iterator<Item = (&'a Self, &'a &'a str)>
     {
+        // OpenGL since 3.20 in core profile doesn't support GLSL lower than 1.50.
+        // Since there are no compatible shader in this case, it will return `None`.
         let low = if *self < GLSL::_1_50 {
             GLSL::_1_10
         } else {
