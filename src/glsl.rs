@@ -1,6 +1,7 @@
 //! Models versions of OpenGL Shader Language (GLSL)
 
 use opengl::OpenGL;
+use PickShader;
 
 /// For OpenGL version 3.3 and above,
 /// the GLSL version is the same as the OpenGL version.
@@ -45,3 +46,19 @@ impl GLSL {
     }
 }
 
+impl PickShader for GLSL {
+    fn pick_shader<'a, I>(&self, shaders: I) -> Option<&'a str>
+        where
+            I: Iterator<Item = (&'a Self, &'a &'a str)>
+    {
+        let low = if *self < GLSL::_1_50 {
+            GLSL::_1_10
+        } else {
+            GLSL::_1_50
+        };
+        shaders
+            .skip_while(|&(v, _)| *v < low)
+            .take_while(|&(v, _)| *v <= *self)
+            .last().map(|(_, &s)| s)
+    }
+}

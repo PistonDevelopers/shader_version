@@ -9,35 +9,34 @@ pub use opengl::OpenGL;
 pub mod opengl;
 pub mod glsl;
 
-use glsl::GLSL;
 use std::collections::BTreeMap;
 
 /// Shader picker.
-pub struct Shaders<'a>(BTreeMap<GLSL, &'a str>);
+pub struct Shaders<'a, T: PickShader = glsl::GLSL>(BTreeMap<T, &'a str>);
 
-impl<'a> Shaders<'a> {
+impl<'a, T: PickShader> Shaders<'a, T> {
     /// Creates a new shader picker.
     pub fn new() -> Self {
         Shaders(BTreeMap::new())
     }
 
     /// Sets source for a shader version.
-    pub fn set(&mut self, version: GLSL, source: &'a str) -> &mut Self {
+    pub fn set(&mut self, version: T, source: &'a str) -> &mut Self {
         self.0.insert(version, source);
         self
     }
 
     /// Get the closest shader to a shader version.
-    pub fn get(&self, version: GLSL) -> Option<&str> {
-        let low = if version < GLSL::_1_50 {
-            GLSL::_1_10
-        } else {
-            GLSL::_1_50
-        };
-        self.0.iter()
-            .skip_while(|&(v, _)| *v < low)
-            .take_while(|&(v, _)| *v <= version)
-            .last().map(|(_, &s)| s)
+    pub fn get(&self, version: T) -> Option<&str> {
+        version.pick_shader(self.0.iter())
     }
+}
+
+/// Implemented by shader enums.
+pub trait PickShader: Ord {
+    /// Pick shader.
+    fn pick_shader<'a, I>(&self, map: I) -> Option<&'a str>
+        where
+            I: Iterator<Item = (&'a Self, &'a &'a str)>;
 }
 
