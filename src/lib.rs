@@ -13,16 +13,16 @@ use glsl::GLSL;
 use std::collections::BTreeMap;
 
 /// Shader picker.
-pub struct Shaders(BTreeMap<GLSL, &'static str>);
+pub struct Shaders<'a>(BTreeMap<GLSL, &'a str>);
 
-impl Shaders {
+impl<'a> Shaders<'a> {
     /// Creates a new shader picker.
     pub fn new() -> Self {
         Shaders(BTreeMap::new())
     }
 
     /// Sets source for a shader version.
-    pub fn set(&mut self, version: GLSL, source: &'static str) -> &mut Self {
+    pub fn set(&mut self, version: GLSL, source: &'a str) -> &mut Self {
         self.0.insert(version, source);
         self
     }
