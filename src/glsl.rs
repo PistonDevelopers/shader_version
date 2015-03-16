@@ -2,6 +2,7 @@
 
 use opengl::OpenGL;
 use PickShader;
+use Shaders;
 
 /// For OpenGL version 3.3 and above,
 /// the GLSL version is the same as the OpenGL version.
@@ -47,20 +48,17 @@ impl GLSL {
 }
 
 impl PickShader for GLSL {
-    fn pick_shader<'a, I>(&self, shaders: I) -> Option<&'a str>
-        where
-            I: Iterator<Item = (&'a Self, &'a &'a str)>
-    {
+    fn pick_shader<'a, S: ?Sized>(self, shaders: &Shaders<'a, Self, S>) -> Option<&'a S> {
         // OpenGL since 3.20 in core profile doesn't support GLSL lower than 1.50.
         // Since there are no compatible shader in this case, it will return `None`.
-        let low = if *self < GLSL::_1_50 {
+        let low = if self < GLSL::_1_50 {
             GLSL::_1_10
         } else {
             GLSL::_1_50
         };
-        shaders
-            .skip_while(|&(v, _)| *v < low)
-            .take_while(|&(v, _)| *v <= *self)
-            .last().map(|(_, &s)| s)
+        shaders.0.iter()
+               .skip_while(|&(v, _)| *v < low)
+               .take_while(|&(v, _)| *v <= self)
+               .last().map(|(_, &s)| s)
     }
 }
