@@ -1,9 +1,9 @@
 [package]
 
 name = "shader_version"
-version = "0.0.4"
+version = "0.0.5"
 authors = ["bvssvni <bvssvni@gmail.com>"]
-keywords = ["shader", "version", "OpenGL", "GLSL"]
+keywords = ["shader", "version", "OpenGL", "GLSL", "piston"]
 description = "A helper library for detecting and picking compatible shaders"
 license = "MIT"
 readme = "README.md"
