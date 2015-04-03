@@ -1,8 +1,6 @@
 //! Models versions of OpenGL Shader Language (GLSL)
 
-use opengl::OpenGL;
-use PickShader;
-use Shaders;
+use { OpenGL, PickShader, Shaders };
 
 /// For OpenGL version 3.3 and above,
 /// the GLSL version is the same as the OpenGL version.
@@ -10,7 +8,7 @@ use Shaders;
 /// Source: http://www.opengl.org/wiki/Core_Language_%28GLSL%29
 #[allow(missing_docs)]
 #[allow(non_camel_case_types)]
-#[derive(Copy, PartialOrd, Ord, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, PartialOrd, Eq, Ord)]
 pub enum GLSL {
     _1_10,
     _1_20,
@@ -49,7 +47,7 @@ impl GLSL {
 
 impl PickShader for GLSL {
     fn pick_shader<'a, S: ?Sized>(self, shaders: &Shaders<'a, Self, S>) -> Option<&'a S> {
-        // OpenGL since 3.20 in core profile doesn't support GLSL lower than 1.50.
+        // OpenGL since 3.2 in core profile doesn't support GLSL lower than 1.50.
         // Since there are no compatible shader in this case, it will return `None`.
         let low = if self < GLSL::_1_50 {
             GLSL::_1_10

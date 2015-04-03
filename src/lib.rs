@@ -37,4 +37,3 @@ pub trait PickShader: Ord {
     /// Pick shader.
     fn pick_shader<'a, S: ?Sized>(self, shaders: &Shaders<'a, Self, S>) -> Option<&'a S>;
 }
-
