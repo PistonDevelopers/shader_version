@@ -1,11 +1,10 @@
-
 //! Models versions of OpenGL
 
 use glsl::GLSL;
 
 #[allow(non_camel_case_types)]
 #[allow(missing_docs)]
-#[derive(Copy, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Copy, Clone, PartialEq, PartialOrd, Eq, Ord)]
 pub enum OpenGL {
     _2_0,
     _2_1,
