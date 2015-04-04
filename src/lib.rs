@@ -1,4 +1,3 @@
-#![crate_name = "shader_version"]
 #![deny(missing_docs)]
 #![deny(missing_copy_implementations)]
 
