@@ -10,37 +10,37 @@ use { OpenGL, PickShader, Shaders };
 #[allow(non_camel_case_types)]
 #[derive(Copy, Clone, PartialEq, PartialOrd, Eq, Ord)]
 pub enum GLSL {
-    _1_10,
-    _1_20,
-    _1_30,
-    _1_40,
-    _1_50,
-    _3_30,
-    _4_00,
-    _4_10,
-    _4_20,
-    _4_30,
-    _4_40,
-    _4_50
+    V1_10,
+    V1_20,
+    V1_30,
+    V1_40,
+    V1_50,
+    V3_30,
+    V4_00,
+    V4_10,
+    V4_20,
+    V4_30,
+    V4_40,
+    V4_50
 }
 
 impl GLSL {
     /// Gets OpenGL version associated with GLSL.
     #[allow(non_snake_case)]
-    pub fn to_OpenGL(&self) -> OpenGL {
+    pub fn to_opengl(&self) -> OpenGL {
         match *self {
-            GLSL::_1_10 => OpenGL::_2_0,
-            GLSL::_1_20 => OpenGL::_2_1,
-            GLSL::_1_30 => OpenGL::_3_0,
-            GLSL::_1_40 => OpenGL::_3_1,
-            GLSL::_1_50 => OpenGL::_3_2,
-            GLSL::_3_30 => OpenGL::_3_3,
-            GLSL::_4_00 => OpenGL::_4_0,
-            GLSL::_4_10 => OpenGL::_4_1,
-            GLSL::_4_20 => OpenGL::_4_2,
-            GLSL::_4_30 => OpenGL::_4_3,
-            GLSL::_4_40 => OpenGL::_4_4,
-            GLSL::_4_50 => OpenGL::_4_5
+            GLSL::V1_10 => OpenGL::V2_0,
+            GLSL::V1_20 => OpenGL::V2_1,
+            GLSL::V1_30 => OpenGL::V3_0,
+            GLSL::V1_40 => OpenGL::V3_1,
+            GLSL::V1_50 => OpenGL::V3_2,
+            GLSL::V3_30 => OpenGL::V3_3,
+            GLSL::V4_00 => OpenGL::V4_0,
+            GLSL::V4_10 => OpenGL::V4_1,
+            GLSL::V4_20 => OpenGL::V4_2,
+            GLSL::V4_30 => OpenGL::V4_3,
+            GLSL::V4_40 => OpenGL::V4_4,
+            GLSL::V4_50 => OpenGL::V4_5
         }
     }
 }
@@ -49,10 +49,10 @@ impl PickShader for GLSL {
     fn pick_shader<'a, S: ?Sized>(self, shaders: &Shaders<'a, Self, S>) -> Option<&'a S> {
         // OpenGL since 3.2 in core profile doesn't support GLSL lower than 1.50.
         // Since there are no compatible shader in this case, it will return `None`.
-        let low = if self < GLSL::_1_50 {
-            GLSL::_1_10
+        let low = if self < GLSL::V1_50 {
+            GLSL::V1_10
         } else {
-            GLSL::_1_50
+            GLSL::V1_50
         };
         shaders.0.iter()
                .skip_while(|&(v, _)| *v < low)
