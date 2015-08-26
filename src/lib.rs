@@ -31,8 +31,8 @@ impl<'a, V, S: ?Sized> Shaders<'a, V, S> where V: PickShader {
     }
 }
 
-/// Implemented by shader enums.
-pub trait PickShader: Ord {
+/// Implemented by shader version enums.
+pub trait PickShader: Ord + Sized {
     /// Pick shader.
     fn pick_shader<'a, S: ?Sized>(self, shaders: &Shaders<'a, Self, S>) -> Option<&'a S>;
 }
