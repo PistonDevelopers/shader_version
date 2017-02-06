@@ -8,7 +8,7 @@ use { OpenGL, PickShader, Shaders };
 /// Source: http://www.opengl.org/wiki/Core_Language_%28GLSL%29
 #[allow(missing_docs)]
 #[allow(non_camel_case_types)]
-#[derive(Copy, Clone, PartialEq, PartialOrd, Eq, Ord)]
+#[derive(Copy, Clone, Debug, PartialEq, PartialOrd, Eq, Ord)]
 pub enum GLSL {
     V1_10,
     V1_20,
