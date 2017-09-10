@@ -80,7 +80,7 @@ impl FromStr for OpenGL {
             "4.3" => Ok(OpenGL::V4_3),
             "4.4" => Ok(OpenGL::V4_4),
             "4.5" => Ok(OpenGL::V4_5),
-            error => Err(ParseOpenGLError(error.into())),
+            error => Err(ParseOpenGLError{input: error.into()}),
         }
     }
 }
@@ -88,11 +88,13 @@ impl FromStr for OpenGL {
 
 /// Represents an error while trying to get `OpenGL` from `&str`.
 #[derive(Debug)]
-pub struct ParseOpenGLError(String);
+pub struct ParseOpenGLError{
+    input: String
+}
 
 impl fmt::Display for ParseOpenGLError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "`{}` is not a valid OpenGL version", self.0)
+        write!(f, "`{}` is not a valid OpenGL version", self.input)
     }
 }
 

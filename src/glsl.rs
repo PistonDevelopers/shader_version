@@ -82,7 +82,7 @@ impl FromStr for GLSL {
             "4.30" => Ok(GLSL::V4_30),
             "4.40" => Ok(GLSL::V4_40),
             "4.50" => Ok(GLSL::V4_50),
-            error => Err(ParseGLSLError(error.into())),
+            error => Err(ParseGLSLError{input: error.into()}),
         }
     }
 }
@@ -90,11 +90,13 @@ impl FromStr for GLSL {
 
 /// Represents an error while trying to get `GLSL` from `&str`.
 #[derive(Debug)]
-pub struct ParseGLSLError(String);
+pub struct ParseGLSLError{
+    input: String
+}
 
 impl fmt::Display for ParseGLSLError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "`{}` is not a valid GLSL version", self.0)
+        write!(f, "`{}` is not a valid GLSL version", self.input)
     }
 }
 
