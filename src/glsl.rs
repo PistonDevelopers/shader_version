@@ -1,6 +1,9 @@
 //! Models versions of OpenGL Shader Language (GLSL)
 
 use { OpenGL, PickShader, Shaders };
+use std::str::FromStr;
+use std::fmt;
+use std::error::Error;
 
 /// For OpenGL version 3.3 and above,
 /// the GLSL version is the same as the OpenGL version.
@@ -58,5 +61,45 @@ impl PickShader for GLSL {
                .skip_while(|&(v, _)| *v < low)
                .take_while(|&(v, _)| *v <= self)
                .last().map(|(_, &s)| s)
+    }
+}
+
+
+impl FromStr for GLSL {
+    type Err = ParseGLSLError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "1.10" => Ok(GLSL::V1_10),
+            "1.20" => Ok(GLSL::V1_20),
+            "1.30" => Ok(GLSL::V1_30),
+            "1.40" => Ok(GLSL::V1_40),
+            "1.50" => Ok(GLSL::V1_50),
+            "3.30" => Ok(GLSL::V3_30),
+            "4.00" => Ok(GLSL::V4_00),
+            "4.10" => Ok(GLSL::V4_10),
+            "4.20" => Ok(GLSL::V4_20),
+            "4.30" => Ok(GLSL::V4_30),
+            "4.40" => Ok(GLSL::V4_40),
+            "4.50" => Ok(GLSL::V4_50),
+            error => Err(ParseGLSLError(error.into())),
+        }
+    }
+}
+
+
+/// Represents an error while trying to get `GLSL` from `&str`.
+#[derive(Debug)]
+pub struct ParseGLSLError(String);
+
+impl fmt::Display for ParseGLSLError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "`{}` is not a valid GLSL version", self.0)
+    }
+}
+
+impl Error for ParseGLSLError {
+    fn description(&self) -> &str {
+        "Invalid GLSL version"
     }
 }
