@@ -1,6 +1,9 @@
 //! Models versions of OpenGL
 
 use glsl::GLSL;
+use std::str::FromStr;
+use std::fmt;
+use std::error::Error;
 
 #[allow(non_camel_case_types)]
 #[allow(missing_docs)]
@@ -56,5 +59,47 @@ impl OpenGL {
             OpenGL::V4_4 => GLSL::V4_40,
             OpenGL::V4_5 => GLSL::V4_50
         }
+    }
+}
+
+
+impl FromStr for OpenGL {
+    type Err = ParseOpenGLError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "2.0" => Ok(OpenGL::V2_0),
+            "2.1" => Ok(OpenGL::V2_1),
+            "3.0" => Ok(OpenGL::V3_0),
+            "3.1" => Ok(OpenGL::V3_1),
+            "3.2" => Ok(OpenGL::V3_2),
+            "3.3" => Ok(OpenGL::V3_3),
+            "4.0" => Ok(OpenGL::V4_0),
+            "4.1" => Ok(OpenGL::V4_1),
+            "4.2" => Ok(OpenGL::V4_2),
+            "4.3" => Ok(OpenGL::V4_3),
+            "4.4" => Ok(OpenGL::V4_4),
+            "4.5" => Ok(OpenGL::V4_5),
+            error => Err(ParseOpenGLError{input: error.into()}),
+        }
+    }
+}
+
+
+/// Represents an error while trying to get `OpenGL` from `&str`.
+#[derive(Debug)]
+pub struct ParseOpenGLError{
+    input: String
+}
+
+impl fmt::Display for ParseOpenGLError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "`{}` is not a valid OpenGL version", self.input)
+    }
+}
+
+impl Error for ParseOpenGLError {
+    fn description(&self) -> &str {
+        "Invalid OpenGL version"
     }
 }

@@ -3,7 +3,7 @@
 
 //! A helper library for detecting and picking compatible shaders.
 
-pub use opengl::OpenGL;
+pub use opengl::{OpenGL, ParseOpenGLError};
 
 pub mod opengl;
 pub mod glsl;
