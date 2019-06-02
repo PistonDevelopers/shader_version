@@ -33,6 +33,29 @@ impl Into<Version> for OpenGL {
 }
 
 impl OpenGL {
+    /// Creates a new `OpenGL` version from graphics API version.
+    pub fn from_api(val: Version) -> Option<OpenGL> {
+        if val.api == "OpenGL" {
+            Some(match (val.major, val.minor) {
+                (2, 0) => OpenGL::V2_0,
+                (2, 1) => OpenGL::V2_1,
+                (3, 0) => OpenGL::V3_0,
+                (3, 1) => OpenGL::V3_1,
+                (3, 2) => OpenGL::V3_2,
+                (3, 3) => OpenGL::V3_3,
+                (4, 0) => OpenGL::V4_0,
+                (4, 1) => OpenGL::V4_1,
+                (4, 2) => OpenGL::V4_2,
+                (4, 3) => OpenGL::V4_3,
+                (4, 4) => OpenGL::V4_4,
+                (4, 5) => OpenGL::V4_5,
+                (_, _) => return None,
+            })
+        } else {
+            None
+        }
+    }
+
     /// Gets the minor version of OpenGL.
     pub fn get_major_minor(&self) -> (isize, isize) {
         match *self {
