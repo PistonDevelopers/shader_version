@@ -3,6 +3,8 @@
 
 //! A helper library for detecting and picking compatible shaders.
 
+extern crate graphics_api_version;
+
 pub use opengl::{OpenGL, ParseOpenGLError};
 
 pub mod opengl;
