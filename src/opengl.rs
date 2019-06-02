@@ -5,6 +5,8 @@ use std::str::FromStr;
 use std::fmt;
 use std::error::Error;
 
+use graphics_api_version::Version;
+
 #[allow(non_camel_case_types)]
 #[allow(missing_docs)]
 #[derive(Copy, Clone, Debug, PartialEq, PartialOrd, Eq, Ord)]
@@ -21,6 +23,13 @@ pub enum OpenGL {
     V4_3,
     V4_4,
     V4_5
+}
+
+impl Into<Version> for OpenGL {
+    fn into(self) -> Version {
+        let (major, minor) = self.get_major_minor();
+        Version::opengl(major as u32, minor as u32)
+    }
 }
 
 impl OpenGL {
