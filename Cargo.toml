@@ -1,7 +1,7 @@
 [package]
 
 name = "shader_version"
-version = "0.5.0"
+version = "0.6.0"
 authors = ["bvssvni <bvssvni@gmail.com>"]
 keywords = ["shader", "version", "OpenGL", "GLSL", "piston"]
 description = "A helper library for detecting and picking compatible shaders"
@@ -16,4 +16,4 @@ name = "shader_version"
 path = "src/lib.rs"
 
 [dependencies]
-piston-graphics_api_version = "0.1.0"
+piston-graphics_api_version = "0.2.0"
